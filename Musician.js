@@ -1,8 +1,19 @@
 const {Sequelize, sequelize} = require('./db');
 
 // TODO - define the Musician model
-let Musician;
+const Musician = sequelize.define('Musician', {
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    instrument: {
+      type: Sequelize.STRING,
+      allowNull: false
+    }
+  });
 
+  Musician.belongsTo(Band);
+  
 module.exports = {
     Musician
 };
