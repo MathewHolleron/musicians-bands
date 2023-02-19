@@ -1,20 +1,21 @@
 const {Sequelize, sequelize} = require('./db');
-
+const {DataTypes} = require("sequelize");
 // TODO - define the Band model
 
 const Band = sequelize.define('Band', {
     name: {
-      type: Sequelize.STRING,
-      allowNull: false
+      type: DataTypes.STRING,
+      
+      
     },
     genre: {
-      type: Sequelize.STRING,
-      allowNull: false
+      type: DataTypes.STRING,
+      
     }
   });
   
-  Band.hasMany(Musician);
   
+
 module.exports = {
     Band
 };
