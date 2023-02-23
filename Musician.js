@@ -10,6 +10,7 @@ const Musician = sequelize.define('Musician', {
       type: DataTypes.STRING,
       
     }
+    
   });
 
   

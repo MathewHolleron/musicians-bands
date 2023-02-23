@@ -11,6 +11,11 @@ const Band = sequelize.define('Band', {
     genre: {
       type: DataTypes.STRING,
       
+    },
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     }
   });
   
