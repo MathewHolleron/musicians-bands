@@ -1,5 +1,5 @@
 const {sequelize} = require('./db');
-const {Band, Musician} = require('./index')
+const {Band, Musician, Song} = require('./index')
 
 describe('Band and Musician Models', () => {
     /**
@@ -43,5 +43,20 @@ describe('Band and Musician Models', () => {
         
         expect(musicianBand[0].name).toBe('Mick Jagger');
       });
+
+      test("can add multiple songs to multiple bands", async function() {
+        
+        const song1 = await Song.create({title:'song1', year:2010});
+        const song2 = await Song.create({title:'song2', year:2010});
+        const band1 = await Band.findByPk(1);
+        const band2 = await Band.findByPk(2);
+        await band1.addSongs([1,2]);
+        await band2.addSongs([1,2]);
+        const song = await band1.getSongs();
+        expect(song[0].title).toBe("song1");
+        expect(song[1].title).toBe("song2");
+        expect(song[0].year).toBe(2010);
+        expect(song[1].year).toBe(2010);
+    })
 
 });

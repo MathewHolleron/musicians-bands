@@ -1,10 +1,9 @@
 const {sequelize} = require("./db.js")
 const {Band} = require('./Band')
 const {Musician} = require('./Musician')
+const {Song} = require('./song')
 
 
-Band.hasMany(Musician);
-Musician.belongsTo(Band);
 
 // async function main() {
 //     await sequelize.sync();
@@ -18,6 +17,11 @@ Musician.belongsTo(Band);
 //         name:"john",
 //         instrument:"guitar",
 //     });
+//     await Song.create({
+//         title:'hangman',
+//         year: 2019,
+//     });
+        
 // }
 
 // main();
@@ -25,10 +29,14 @@ Musician.belongsTo(Band);
 
 
 
-
+Band.hasMany(Musician);
+Musician.belongsTo(Band);
+Song.belongsToMany(Band,{through:'song_bands'})
+Band.belongsToMany(Song,{through:'song_bands'})
 
 module.exports = {
     Band,
-    Musician
+    Musician,
+    Song
 };
 
